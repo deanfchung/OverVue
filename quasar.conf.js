@@ -43,7 +43,16 @@ module.exports = function (ctx) {
         'QList',
         'QItem',
         'QItemSection',
-        'QItemLabel'
+        'QItemLabel',
+        'QExpansionItem',
+        'QInput',
+        'QBar',
+        'QFooter',
+        'QAvatar',
+        'QTabs',
+        'QTab',
+        'QRouteTab',
+        'QTabPanels'
       ],
 
       directives: [
@@ -66,6 +75,15 @@ module.exports = function (ctx) {
       // analyze: true,
       // extractCSS: false,
       extendWebpack (cfg) {
+        cfg.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /node_modules/,
+          options: {
+            formatter: require('eslint').CLIEngine.getFormatter('stylish')
+          }
+        })
       }
     },
 
@@ -86,9 +104,9 @@ module.exports = function (ctx) {
       // workboxPluginMode: 'InjectManifest',
       // workboxOptions: {}, // only for NON InjectManifest
       manifest: {
-        // name: 'Quasar App',
-        // short_name: 'Quasar App',
-        // description: 'A Quasar Framework app',
+        // name: 'PreVue 2.0',
+        // short_name: 'PreVue 2.0',
+        // description: 'Vue Prototype DevTool',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
@@ -152,7 +170,7 @@ module.exports = function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        // appId: 'quasar-example'
+        // appId: 'prevue2'
       }
     }
   }
